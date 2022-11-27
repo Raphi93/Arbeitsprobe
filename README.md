@@ -29,28 +29,17 @@ Dann habe ich für ein Raspberry Pi mit LoRaWAN gekauft.
 
 Und wollte das Backup von der alten Bridge einspielen, aber es hatte dort auch nur Störungen, dann musste ich alles neu aufsetzten 😐.
 
-![Ein Bild, das Tisch enthält.
-
-Automatisch generierte Beschreibung](Aspose.Words.3643b7eb-4a47-4d68-b215-e961a8502ed8.003.png)
-
 Das heisst jeder Controller von der Home Matic ausbauen einen Funktionstest machen.
 
 Dann sie in der neu aufgesetzter Raspberry Bridge verbinden, aber da ich es nicht von der alten Bridge entfernenden konnte wegen der Störungen. Musste alle Controller auch noch zurücksetzten 
 
 Als ich das Geschäft habe, funktioniert es fast alles, das einzige, wo nicht perfekt lief, sind die Programme, sie sind bei der Home Matic seltsam zum Programmieren, sie haben eine eigene Sprache, und ist sehr eingeschränkt.
 
-![Ein Bild, das Text enthält.
-
-Automatisch generierte Beschreibung](Aspose.Words.3643b7eb-4a47-4d68-b215-e961a8502ed8.004.png) Dan hat Mike Hofer über IoBroker, mit mir gesprochen, man kann alle mögliche Bridge miteinander verbinden und eine visuelle Oberfläche zu designen.
-
 1. # Was ich machen musste, IoBroker
 
 Ich musste zuerst mich informieren über IoBroker es Open-Source-Programm.
 IoBroker kann eigentlich nichts man muss zuerst alle Adapter installieren um zum Beispiel eine Verbindung zur Home Matic System einstellen kann man muss halt die IP-Angeben und noch den Namen und Passwort und dann hat man eine Verbindung zur Home Matic System. Die Programme können auf JavaScript, Blockly oder Type Script auswählen.
 
-![Ein Bild, das Text, Monitor, Screenshot, Bildschirm enthält.
-
-Automatisch generierte Beschreibung](Aspose.Words.3643b7eb-4a47-4d68-b215-e961a8502ed8.005.png)
 1. # Welche Instanzen habe ich gewählt
 
 - Home Matic
@@ -62,20 +51,13 @@ Automatisch generierte Beschreibung](Aspose.Words.3643b7eb-4a47-4d68-b215-e961a8
 - Swaagger
 - USW
 
-![](Aspose.Words.3643b7eb-4a47-4d68-b215-e961a8502ed8.006.png)
-1. # Was habe bereits gemacht
 
 Skripte fürs Licht, Heizung, Sonnen-Steuerung in JavaScript (Testphase).
 
-![Ein Bild, das Text enthält.
 
-Automatisch generierte Beschreibung](Aspose.Words.3643b7eb-4a47-4d68-b215-e961a8502ed8.007.png)
 
 Mit Vis Layout designen.
 
-![Ein Bild, das Text, Elektronik enthält.
-
-Automatisch generierte Beschreibung](Aspose.Words.3643b7eb-4a47-4d68-b215-e961a8502ed8.008.png)
 
 
 1. # Was will ich noch machen
