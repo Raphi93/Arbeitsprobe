@@ -1,11 +1,4 @@
 
-Arbeitsprobe
-
-SMART HOME
-
-RAPHAEL HUG
-
-2022
 ![](Aspose.Words.3643b7eb-4a47-4d68-b215-e961a8502ed8.001.png)![](Aspose.Words.3643b7eb-4a47-4d68-b215-e961a8502ed8.002.png)
 # Inhalt
 [1.	Vorstellungen	2](#_Toc120449917)
