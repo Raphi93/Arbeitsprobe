@@ -1,0 +1,103 @@
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+// Hier werden die die Daten wo ich Brauche an meinem ASP.NET Server geschickt 
+// auf einem MongoDB geschrieben mit Atlas
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+schedule("*/3 * * * *", function () {
+    let date = new Date();
+    let datum = date.getDate() + "." + (date.getMonth() + 1) + "." + date.getFullYear();
+    TempWeather(datum);
+});
+
+schedule("*/30 * * * *", function () {
+    let date = new Date();
+    let datum = date.getDate() + "." + (date.getMonth() + 1) + "." + date.getFullYear();
+    WeatherAverage(datum);
+});
+
+schedule("0 0 * * *", function () {
+    let date = new Date();
+    let datum = date.getDate() + "." + (date.getMonth() + 1) + "." + date.getFullYear();
+    WeatherDay();
+});
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+function TempWeather(datum) {
+    let temp = getState('hm-rpc.1.00181D89A01CE3.1.ACTUAL_TEMPERATURE').val;
+    let wind = getState('hm-rpc.1.00181D89A01CE3.1.WIND_SPEED').val;
+    let rain = getState('hm-rpc.1.00181D89A01CE3.1.RAIN_COUNTER').val;
+    let raining = getState('hm-rpc.1.00181D89A01CE3.1.RAINING').val;
+    let sunDuration = getState('hm-rpc.1.00181D89A01CE3.1.SUNSHINEDURATION').val;
+    let humidity = getState('hm-rpc.1.00181D89A01CE3.1.HUMIDITY').val;
+
+    var request = require('request');
+    request.put({
+        url: 'http://10.0.89.88:7080/api/WeatherStation/Datum?dayTime=' + datum,
+        json: {
+            temp: temp,
+            wind: wind,
+            rain: rain,
+            raining: raining,
+            sunDuration: sunDuration,
+            humidity: humidity,
+            dayTime: datum
+        }
+    }, function (error, response, body) {
+        if (error) {
+            console.error(error);
+        } else {
+            console.log("Post");
+        }
+    });
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+function WeatherDay(datum) {
+    let temp = getState('hm-rpc.1.00181D89A01CE3.1.ACTUAL_TEMPERATURE').val;
+    let wind = getState('hm-rpc.1.00181D89A01CE3.1.WIND_SPEED').val;
+    let rain = getState('hm-rpc.1.00181D89A01CE3.1.RAIN_COUNTER').val;
+    let raining = getState('hm-rpc.1.00181D89A01CE3.1.RAINING').val;
+    let sunDuration = getState('hm-rpc.1.00181D89A01CE3.1.SUNSHINEDURATION').val;
+    let humidity = getState('hm-rpc.1.00181D89A01CE3.1.HUMIDITY').val;
+
+    var request = require('request');
+    request.post({
+        url: 'http://10.0.89.88:7080/api/WeatherStation',
+        json: {
+            temp: temp,
+            wind: wind,
+            rain: rain,
+            raining: raining,
+            sunDuration: sunDuration,
+            humidity: humidity,
+            dayTime: datum
+        }
+    }, function (error, response, body) {
+        if (error) {
+            console.error(error);
+        } else {
+            console.log("PUT");
+        }
+    });
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+function WeatherAverage(datum) {
+    let temp = getState('hm-rpc.1.00181D89A01CE3.1.ACTUAL_TEMPERATURE').val;
+    let wind = getState('hm-rpc.1.00181D89A01CE3.1.WIND_SPEED').val;
+    let humidity = getState('hm-rpc.1.00181D89A01CE3.1.HUMIDITY').val;
+
+    var request = require('request');
+    request.post({
+        url: 'http://10.0.89.88:7080/api/WeatherAverage',
+        json: {
+            temp: temp,
+            wind: wind,
+            humidity: humidity,
+            dayTime: datum,
+        }
+    }, function (error, response, body) {
+        if (error) {
+            console.error(error);
+        } else {
+            console.log("Average");
+        }
+    });
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////
