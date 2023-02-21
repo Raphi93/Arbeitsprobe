@@ -1,0 +1,84 @@
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+// Hier werden die die Daten wo ich Brauche an meinem ASP.NET Server geschickt 
+// auf einem MongoDB geschrieben mit Atlas
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+schedule("0 0 * * *", function () {
+    let date = new Date();
+    let datum = date.getDate() + "." + (date.getMonth() + 1) + "." + date.getFullYear();
+    TempDay(datum);
+});
+schedule("*/5 * * * *", function () {
+    let date = new Date();
+    let datum = date.getDate() + "." + (date.getMonth() + 1) + "." + date.getFullYear();
+    Temp(datum);
+});
+
+schedule("*/30 * * * *", function () {
+    let date = new Date();
+    let datum = date.getDate() + "." + (date.getMonth() + 1) + "." + date.getFullYear();
+    TempAverage(datum);
+});
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+function Temp(datum) {
+    let wallTemp = getState('hm-rpc.1.000A9D899F2BAA.1.ACTUAL_TEMPERATURE').val;
+    let floorTemp = getState('hm-rpc.0.KEQ0122083.1.TEMPERATURE').val;
+
+    var request = require('request');
+    request.put({
+        url: 'http://10.0.89.93:7080/api/TempIndoor/Datum?dayTime=' + datum,
+        json: {
+            floorTemp: floorTemp,
+            wallTemp: wallTemp,
+            dayTime: datum
+        }
+    }, function (error, response, body) {
+        if (error) {
+            console.error(error);
+        } else {
+            console.log("PUT Temp");
+        }
+    });
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+function TempDay(datum) {
+    let wallTemp = getState('hm-rpc.1.000A9D899F2BAA.1.ACTUAL_TEMPERATURE').val;
+    let floorTemp = getState('hm-rpc.0.KEQ0122083.1.TEMPERATURE').val;
+
+    var request = require('request');
+    request.post({
+        url: 'http://10.0.89.93:7080/api/TempIndoor/',
+        json: {
+            floorTemp: floorTemp,
+            wallTemp: wallTemp,
+            dayTime: datum
+        }
+    }, function (error, response, body) {
+        if (error) {
+            console.error(error);
+        } else {
+            console.log("POST Temp");
+        }
+    });
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////
+function TempAverage(datum) {
+    let wallTemp = getState('hm-rpc.1.000A9D899F2BAA.1.ACTUAL_TEMPERATURE').val;
+    let floorTemp = getState('hm-rpc.0.KEQ0122083.1.TEMPERATURE').val;
+
+    var request = require('request');
+    request.post({
+        url: 'http://10.0.89.93:7080/api/TempIndoorAverage/',
+        json: {
+            floorTemp: floorTemp,
+            wallTemp: wallTemp,
+            dayTime: datum
+        }
+    }, function (error, response, body) {
+        if (error) {
+            console.error(error);
+        } else {
+            console.log("Average Temp");
+        }
+    });
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////
