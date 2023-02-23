@@ -1,58 +1,29 @@
+## Vorhaben eines Smart Homes
+Ich hatte mir überlegt, ein Smart Home einzurichten, da mein Vater vor 10 Jahren damit begonnen hatte und alles mit Home Matic installiert hatte, als er umgezogen war. Als ich später zu meiner Mutter zog, um eine zweite Lehre zu beginnen, bemerkte ich, dass das Home-Matic-System Störungen hatte.
 
-# Vorstellungen
+## Problemlösung mit Home Matic
+Zunächst musste ich die Bridge überprüfen und feststellen, dass ich die CCU1 (die erste Generation der Home-Matic-Bridge) ersetzen musste, da der LoRaWAN-Anschluss einen Wackelkontakt hatte. Also kaufte ich ein Raspberry Pi mit LoRaWAN und wollte das Backup von der alten Bridge einspielen. Leider hatte auch das Backup Störungen und ich musste alles neu aufsetzen. Dazu musste ich jeden Controller von Home Matic ausbauen und einen Funktionstest durchführen. Anschließend musste ich sie in der neu aufgesetzten Raspberry-Bridge verbinden. Da ich sie jedoch aufgrund der Störungen nicht von der alten Bridge entfernen konnte, musste ich alle Controller zurücksetzen.
 
-Ich habe mir gedacht ein Smart-Home einzurichten, als mein Vater hat damit angefangen ein Smart Home einzurichten alles mit Home Matic als er vor 10 Jahren weggezogen bin, hatte er viele Controller mitgenommen. Wo ich wieder zu meiner Mutter gezogen bin, weil ich eine 2te Lehre beginnen wollte. Als ich eingezogen bin, hatten das Home Matic System nur noch Störungen.
-# Was ich machen musste, Home Matic
+Nachdem ich alles eingerichtet hatte, funktionierte fast alles. Das einzige Problem waren die Programme, die bei Home Matic seltsam zu programmieren sind, da sie eine eigene Sprache haben und sehr eingeschränkt sind. Dann sprach Mike Hofer mit mir über IoBroker, mit dem man alle möglichen Bridges miteinander verbinden und eine visuelle Oberfläche erstellen kann.
 
-Zuerst musste ich die Bride anschauen, dann habe bemerkt ich musste den CCU1 (Die erste Generation von der Home Matic Bridge) wechseln. Der LoRaWAN Anschluss hatte einen Wackelkontakt.
+## Lösung mit IoBroker
+Zunächst informierte ich mich über IoBroker, ein Open-Source-Programm. IoBroker kann eigentlich nichts, man muss zuerst alle Instanzen installieren, um beispielsweise eine Verbindung zum Home-Matic-System herstellen zu können. Man muss die IP-Adresse und die Anmeldedaten angeben und hat dann eine Verbindung zum Home-Matic-System. Die Programme können in JavaScript, Blockly oder Type Script geschrieben werden.
 
-Dann habe ich für ein Raspberry Pi mit LoRaWAN gekauft.
-
-Und wollte das Backup von der alten Bridge einspielen, aber es hatte dort auch nur Störungen, dann musste ich alles neu aufsetzten 😐.
-
-Das heisst jeder Controller von der Home Matic ausbauen einen Funktionstest machen.
-
-Dann sie in der neu aufgesetzter Raspberry Bridge verbinden, aber da ich es nicht von der alten Bridge entfernenden konnte wegen der Störungen. Musste alle Controller auch noch zurücksetzten 
-
-Als ich das Geschäft habe, funktioniert es fast alles, das einzige, wo nicht perfekt lief, sind die Programme, sie sind bei der Home Matic seltsam zum Programmieren, sie haben eine eigene Sprache, und ist sehr eingeschränkt. Dan hat Mike Hofer über IoBroker, mit mir gesprochen, man kann alle mögliche Bridge miteinander verbinden und eine visuelle Oberfläche zu designen.
-
-# Was ich machen musste, IoBroker
-
-Ich musste zuerst mich informieren über IoBroker es Open-Source-Programm.
-IoBroker kann eigentlich nichts man muss zuerst alle Instanzen installieren um zum Beispiel eine Verbindung zur Home Matic System einstellen kann man muss halt die IP-Angeben und noch den Namen und Passwort und dann hat man eine Verbindung zur Home Matic System. Die Programme können auf JavaScript, Blockly oder Type Script auswählen.
-
-
-# Welche Instanzen habe ich gewählt
+## Gewählte Instanzen
+Ich wählte folgende Instanzen:
 
 - Home Matic
-- Phillips Hue
+- Philips Hue
 - MySQL
 - Sonos
-- Vis (für die Visuelle Ansicht)
+- Vis (für die visuelle Ansicht)
 - Spotify
-- Swaagger
+- Swagger
+- Fortschritte
+- Ich habe Skripte für das Licht, die Heizung und die Sonnensteuerung in JavaScript geschrieben (Testphase) und ein Vis-Layout entworfen.
 
-# Was habe bereits gemacht
+## Zukünftige Pläne
+Ich möchte das Vis fertigstellen und die Skripte verbessern und in Type Script schreiben. Außerdem möchte ich ein Backend einrichten.
 
-Skripte fürs Licht, Heizung, Sonnen-Steuerung in JavaScript (Testphase).
-
-Mit Vis Layout designen.
-
- # Was will ich noch machen
-
-Vis Fertigstellen
-
-Skripte verbessern und in Type Script schreiben.
-
-Backend
-
-# Probleme
-
-Was eigentlich die grössten Probleme machte, bei mir zu Hause habe ein Mash System und eine Kollegin von mir und meiner Mutter hat es dazumal vor 8 Jahren eingebaut und wartet es immer noch.
-
-In meinem Zimmer läuft die IP vom Mash und das Home Matic lauft auf dem normalen Netz 192…
-
-Und ich habe zum Testen den IoBroker wo ich auf ein Raspberry laufen liess in meinem Zimmer angeschlossen. Die Verbindung hatte geklappt, weil die Netzwerke sich ja kennen, aber IoBroker hatte keinen Zugriff auf den Controller. Ich dachte, wenn die Netze miteinander verbunden sind, sollte es funktionieren. Aber ich wurde ein Besessener belehrt. Dann habe ich den Home Matic Bridge auf das Mash Netz eingerichtet. Ich habe nicht die IoBroker umgesteckt, weil Sonos, Hue alles auf dem Mash Netz laufen.
-
-Das war eigentlich das grösste Problem, wo erwähnenswert ist.
-
+## Herausforderungen
+Das größte Problem, das ich hatte, war, dass ich zu Hause ein Mash-System hatte, das vor 8 Jahren von einer Kollegin meiner Mutter eingebaut wurde und immer noch gewartet wird. In meinem Zimmer lief die IP-Adresse vom Mash-System und das Home-Matic-System lief im normalen Netz 192... Als ich den IoBroker zum Testen auf einem Raspberry Pi in meinem Zimmer anschloss, funktionierte die Verbindung, aber der IoBroker hatte keinen Zugriff auf den Controller. Ich dachte, wenn die Netzwerke miteinander verbunden sind, sollte es funktionieren. Doch ich wurde eines Besseren belehrt. Also richtete ich den Home-Matic-Bridge auf das
